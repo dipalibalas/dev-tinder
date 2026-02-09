@@ -1,0 +1,22 @@
+{
+  "name": "devtinder",
+  "version": "1.0.0",
+  "description": "tinder for devs",
+  "keywords": [
+    "backend",
+    "nodejs",
+    "express",
+    "javascript"
+  ],
+  "license": "ISC",
+  "author": "dipali balas",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start" : "nodemon src/app.js",
+    "dev" : "nodemon src/app.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
