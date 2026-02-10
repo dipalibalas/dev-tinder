@@ -20,3 +20,9 @@ Ep. 02
 - Use of regex in routes /a/, /.*fly$/
 - Reading the query params in the routes
 - Reading the dynamic routes
+
+Ep.05
+- Multiple Route Handlers - Play with the code
+- next()
+- next function and errors along with res.send()
+- app.use("/route",rH1,[rH2,rh3],rH4,rH5)
