@@ -14,9 +14,14 @@ app.post("/signup", async (req, res) => {
     age: 30,
     password: "deep@123",
   });
+  try {
+    await user.save();
+    res.send("User added successfully!");
+  } catch (error) {
+    res.status(400).send("Error in user data saving...");
+  }
 
-  await user.save();
-  res.send("User added successfully!");
+ 
 });
 
 // First of all connet to DB then do server to listen
