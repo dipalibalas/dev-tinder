@@ -8,6 +8,7 @@ const User = require("./models/user");
 // json data middaleware
 app.use(express.json());
 
+
 app.post("/signup", async (req, res) => {
   // Creating a new instance of the user model
   // const user = new User({
@@ -22,7 +23,7 @@ app.post("/signup", async (req, res) => {
     await user.save();
     res.send("User added successfully!");
   } catch (error) {
-    res.status(400).send("Error in user data saving...");
+    res.status(400).send("Error saving the user:" + error.message);
   }
 });
 
@@ -38,7 +39,7 @@ app.get("/user", async (req, res) => {
       res.send(user);
     }
   } catch (error) {
-    res.status(400).send("Error in user data saving...");
+    res.status(400).send("Error in user data saving...", error.message);
   }
 });
 
@@ -64,14 +65,28 @@ app.delete("/user", async (req, res) => {
 });
 
 // Update user data
-app.patch("/user", async (req, res) => {
-  const userId = req.body.userId;
+app.patch("/user/:userId", async (req, res) => {
+  const userId = req.params?.userId;
   const data = req.body;
+
   try {
-    await User.findByIdAndUpdate({ _id: userId }, data);
+    const ALLOWED_UPDATES = ["photoUrl", "gender", "age", "skills"];
+    const isUpdateAllowed = Object.keys(data).every((k) =>
+      ALLOWED_UPDATES.includes(k),
+    );
+
+    if (!isUpdateAllowed) {
+      throw new Error("Update not allowed");
+    }
+    if (data?.skills?.length > 10) {
+      throw new Error("More than 10 skills not allowed");
+    }
+    await User.findByIdAndUpdate({ _id: userId }, data, {
+      runValidators: true,
+    });
     res.send("User updated..");
   } catch (err) {
-    res.status(400).send("Something went wrong ");
+    res.status(400).send("UPDATE FAILED:" + err.message);
   }
 });
 
