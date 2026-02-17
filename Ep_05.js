@@ -1,5 +1,5 @@
 const express = require("express");
-
+const { adminAuth, userAuth } = require("./middlewares/auth");
 const app = express();
 
 // Handle Auth Middleware for all type(GET,POST,PATCH,UPDATE,DELETE) request
@@ -12,6 +12,32 @@ app.post("/admin")
 app.patch("/admin")
 // Handle Auth Middleware for only DELETE requests
 app.delete("/admin")
+
+// ---------------Middleware----------------
+app.use("/admin", adminAuth);
+
+app.get("/admin/getAllData", (req, res) => {
+  res.send("User data sent to admin!!");
+});
+
+app.get("/admin/deleteAllData", (req, res) => {
+  res.send("Deleted a user");
+});
+
+app.get("/user", userAuth, (req, res) => {
+  res.send("User data sent!!");
+});
+
+// ----------------------------------------------------------------------
+// ---------------Error Handler----------------
+// order matters
+app.use("/user", (err,req,res,next)=>{
+  if(err){
+    throw new Error("Something went wrong")
+  }
+});
+
+// ----------------------------------------------------------------------
 
 app.use(
   "/user",
