@@ -8,9 +8,9 @@ const User = require("./models/user");
 app.post("/signup", async (req, res) => {
   // Creating a new instance of the user model
   const user = new User({
-    firstName: "Dipali",
+    firstName: "Dipali1",
     lastName: "Balas",
-    emailId: "deep@gmail.com",
+    emailId: "deep123@gmail.com",
     age: 30,
     password: "deep@123",
   });
