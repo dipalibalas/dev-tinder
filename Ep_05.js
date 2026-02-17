@@ -2,6 +2,17 @@ const express = require("express");
 
 const app = express();
 
+// Handle Auth Middleware for all type(GET,POST,PATCH,UPDATE,DELETE) request
+app.use("/admin")
+// Handle Auth Middleware for only GET requests
+app.get("/admin")
+// Handle Auth Middleware for only POST requests
+app.post("/admin")
+// Handle Auth Middleware for only PATCH requests
+app.patch("/admin")
+// Handle Auth Middleware for only DELETE requests
+app.delete("/admin")
+
 app.use(
   "/user",
   (req, res, next) => {

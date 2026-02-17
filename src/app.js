@@ -2,38 +2,22 @@ const express = require("express");
 
 const app = express();
 
-app.use(
-  "/user",
-  (req, res, next) => {
-    console.log("RH1");
-    // res.send("Request Handler1"); // It will give the response of 1st route handler, not go to the second handler
-    next();
-    // res.send("Request Handler1"); // It throws the error: Cannot set headers after they are sent to the client
-  },
-  [
-    (req, res, next) => {
-      console.log("RH2");
-      // res.send("Request Handler2");
-      next();
-    },
-    (req, res, next) => {
-      console.log("RH3");
-      next();
-      // res.send("Request Handler3");
-    },
-    (req, res, next) => {
-      console.log("RH4");
-      next();
-      // res.send("Request Handler4");
-    },
-  ],
-  (req, res) => {
-    console.log("RH5");
-    res.send("Request Handler5");
-  },
-);
+// middleware
+app.use("/admin", (req, res, next) => {
+  console.log("admin auth middleware");
+  const token = "xyz";
+  const isAuthorized = token === "xyz";
+  if (!isAuthorized) res.status(401).send("Unauthorized request");
+  else next();
+});
 
+app.get("/admin/getAllData", (req, res) => {
+  res.send("User data sent!!");
+});
 
+app.get("/admin/deleteAllData", (req, res) => {
+  res.send("Deleted a user");
+});
 app.use("/test", (req, res) => {
   res.send("Hello from the test server"); // request handler
 });
