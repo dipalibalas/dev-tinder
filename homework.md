@@ -93,9 +93,31 @@ Ep.10
 
 Ep.11
 
-- Explore tinder APIs
-- Create a list all API you can think of in Dev Tinder
-- Group multiple routes under repective routers
+ - Explore tinder APIs
+ - Create a list all API you can think of in Dev Tinder
+ - Group multiple routes under repective routers
+ - Read documentation for express.Router
+ - Create routes folder for managing auth,profile, request routers
+ - create authRouter, profileRouter, requestRouter
+ - Import these routers in app.js
+ - Create POST /logout API
+ - Create PATCH /profile/edit
+ - Create PATCH /profile/password API => forgot password API
+ - Make you validate all data in every POST, PATCH apis
+
+Ep.12
+
+ - Create Connnection Request Schema
+ - Send Connection Request API
+ - Proper validation of Data
+ - Think about ALL corner cases
+ - $or query $and query in mongoose - https://www.mongodb.com/docs/manual/reference/operator/query-logical/
+ - schema.pre("save") function
+ - Read more about indexes in MongoDB
+ - Why do we need index in DB?
+ - What is the advantages and disadvantage of creating?
+ - Read this arcticle about compond indexes - https://www.mongodb.com/docs/manual/core/indexes/index-types/index-compound/
+ - ALWAYS THINK ABOUT CORNER CASES 
 
 
 
