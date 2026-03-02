@@ -32,7 +32,7 @@ connectDB()
   .then(() => {
     console.log("Database connection established...");
     app.listen(process.env.PORT, () => {
-      console.log("Server is running on 7777");
+      console.log("Server is running on", process.env.PORT);
     });
   })
   .catch((err) => {
